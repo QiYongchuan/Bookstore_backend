@@ -1,3 +1,17 @@
 # 默认忽略的文件
 /shelf/
 /workspace.xml
+
+# 忽略 target 目录
+target/
+
+# 忽略 Maven 产生的构建文件
+pom.xml.tag
+release.properties
+dependency-reduced-pom.xml
+
+# 忽略 Eclipse 产生的配置文件
+.classpath
+.project
+.settings/
+

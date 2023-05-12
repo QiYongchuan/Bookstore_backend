@@ -4,8 +4,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link href="../css/Style.css" rel="stylesheet" type="text/css" />
-	<script language="javascript" src="../js/public.js"></script>
+	<link th:href="@{/css/Style.css}" rel="stylesheet" type="text/css" />
+	<script language="javascript" th:src="@{/js/public.js}"></script>
 	<script type="text/javascript">
 		//添加商品
 		function addProduct() {
@@ -120,14 +120,15 @@
 								<td width="8%" align="center">删除</td>
 							</tr>
 							<!--  循环输出所有商品 -->
-							<c:forEach items="${ps}" var="p">
+
 								<tr onmouseover="this.style.backgroundColor = 'white'"
-									onmouseout="this.style.backgroundColor = '#F5FAFE';">
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="200">${p.id }</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">${p.name }</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%">${p.price }</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%">${p.pnum }</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center">${p.category}</td>
+									onmouseout="this.style.backgroundColor = '#F5FAFE';"
+								   th:each="p : ${productsList}">
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="200" th:text="${p.id}">${p.id }</td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%"th:text="${p.name}" >${p.name }</td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%" th:text="${p.price}">${p.price }</td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%" th:text="${p.pnum}">${p.pnum }</td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center" th:text="${p.category}">${p.category}</td>
 									<td align="center" style="HEIGHT: 22px" width="7%">
 										<a href="edit.html">
 											<img src="../images/i_edit.gif" border="0" style="CURSOR: hand">
