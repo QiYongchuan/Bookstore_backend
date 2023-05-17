@@ -3,11 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<LINK href="../css/Style.css" type="text/css" rel="stylesheet">
+	<LINK th:href="@{/css/Style.css}" type="text/css" rel="stylesheet">
 </HEAD>
 
 <body>
-	<form id="userAction_save_do" name="Form1" action="list.html" method="post" enctype="multipart/form-data">
+	<form id="userAction_save_do" name="Form1" action="save" method="post" enctype="multipart/form-data">
 		&nbsp;
 		<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee"
 			style="border: 1px solid #8ba7e3" border="0">
@@ -53,7 +53,7 @@
 			<tr>
 				<td align="center" bgColor="#f5fafe" class="ta_01">商品图片：</td>
 				<td class="ta_01" bgColor="#ffffff" colspan="3">
-					<input type="file" name="upload" size="30" value="" />
+					<input type="file" name="img" size="30" value="" />
 				</td>
 			</tr>
 			<TR>
@@ -63,7 +63,7 @@
 				</TD>
 			</TR>
 			<TR>
-				<td align="center" colSpan="4" class="sep1"><img src="../images/shim.gif">
+				<td align="center" colSpan="4" class="sep1"><img th:src="@{/images/shim.gif}">
 				</td>
 			</TR>
 			<tr>
