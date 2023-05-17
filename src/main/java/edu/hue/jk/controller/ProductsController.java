@@ -22,4 +22,12 @@ public class ProductsController {
 
         return "products/list";
     }
+    @RequestMapping("del")
+    public String del(Model model,String id){
+        productsMapper.del(id);
+        List<products> productsList = productsMapper.selectAll(null,null,null,null,null);
+        model.addAttribute(productsList);
+
+        return "products/list";
+    }
 }
