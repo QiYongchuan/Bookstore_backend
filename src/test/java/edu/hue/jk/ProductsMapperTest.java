@@ -1,9 +1,8 @@
 package edu.hue.jk;
 
 
-import edu.hue.jk.mapper.NoticeMapper;
 import edu.hue.jk.mapper.ProductsMapper;
-import edu.hue.jk.model.products;
+import edu.hue.jk.model.Products;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,11 @@ public class ProductsMapperTest {
     private ProductsMapper ProductsMapper;
     @Test
     public void test1(){
-        List<products> productsList = ProductsMapper.selectAll(null,null,null,null
+        List<Products> productsList = ProductsMapper.selectAll(null,null,null,null
         ,null);
         System.out.println(productsList);
 
-        products products = new products();
+        Products products = new Products();
         products.setId("000001");
         products.setCategory("科技类");
         products.setName("30天入门系列");

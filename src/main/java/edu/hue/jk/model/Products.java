@@ -4,7 +4,7 @@ package edu.hue.jk.model;
 import lombok.Data;
 
 @Data
-public class products {
+public class Products {
     private String id;
     private String name;
     private Double price;

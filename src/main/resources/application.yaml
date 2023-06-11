@@ -28,3 +28,4 @@ server:
 bookstore:
   url-locations: productImg
   upload-locations: d:\bookstore\productImg
+  url-path: /productImg/**/*

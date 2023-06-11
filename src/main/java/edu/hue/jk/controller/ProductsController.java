@@ -1,7 +1,7 @@
 package edu.hue.jk.controller;
 
 import edu.hue.jk.mapper.ProductsMapper;
-import edu.hue.jk.model.products;
+import edu.hue.jk.model.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class ProductsController {
     private String uploadLocations;
     @RequestMapping("list")
     public String list(Model model, String id,String category,String name,Double lowPrice,Double highPrice){
-        List<products> productsList = productsMapper.selectAll(id,category,name,lowPrice,highPrice);
+        List<Products> productsList = productsMapper.selectAll(id,category,name,lowPrice,highPrice);
         model.addAttribute(productsList);
 
         return "products/list";
@@ -35,23 +35,33 @@ public class ProductsController {
     @RequestMapping("del")
     public String del(Model model,String id){
         productsMapper.del(id);
-        List<products> productsList = productsMapper.selectAll(null,null,null,null,null);
+        List<Products> productsList = productsMapper.selectAll(null,null,null,null,null);
         model.addAttribute(productsList);
 
         return "products/list";
+    }
+    @RequestMapping("edit")
+    public String edit(Model model,String id){
+        Products products = productsMapper.selectById(id);
+        model.addAttribute("p",products);
+        return "products/edit";
     }
     @RequestMapping("add")
     public String add(){
         return "products/add";
     }
     @RequestMapping("save")
-    private String save(Model model, products products, MultipartFile img){
-        products.setId(UUID.randomUUID().toString()); //生成新的id号
+    private String save(Model model, Products products, MultipartFile img){
+       //判断是插入还是编辑
+       if(products.getId() == null){
+           products.setId(UUID.randomUUID().toString()); //生成新的id号
+           productsMapper.insert(products); //插入数据库
+       }
 
         String imgFileName = products.getId() + ".jpg";
         products.setImgurl(urlPath + "/" + imgFileName);  //存到数据库里面的部分
+         productsMapper.update(products);
 
-        productsMapper.insert(products); //插入数据库
 
         //文件传输
         try {
@@ -60,7 +70,7 @@ public class ProductsController {
             throw new RuntimeException(e);
         }
 
-        List<products> productsList = productsMapper.selectAll(null,null,null,null,null);
+        List<Products> productsList = productsMapper.selectAll(null,null,null,null,null);
         model.addAttribute(productsList);
 
         return "products/list";

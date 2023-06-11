@@ -1,6 +1,6 @@
 package edu.hue.jk.mapper;
 
-import edu.hue.jk.model.products;
+import edu.hue.jk.model.Products;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -39,7 +39,7 @@ public interface ProductsMapper {
 
 //    @Select("select *  from products ")
     @SelectProvider(type = Provider.class,method = "filter")
-    public List<products> selectAll(
+    public List<Products> selectAll(
             @Param("id") String id,
             @Param("category") String category,
             @Param("name") String name,
@@ -48,13 +48,13 @@ public interface ProductsMapper {
     );
 
     @Select("select * from products where id = #{id}")
-    public void selectById(Integer id);
+    public Products selectById(String id);
 
     @Insert("insert into products(id,name,price,category,pnum,imgurl,description) values(#{id},#{name},#{price},#{category},#{pnum},#{imgurl},#{description})")
-    public void insert(products products);
+    public void insert(Products products);
 
     @Update("update products set id=#{id},name=#{name},price=#{price},category=#{category},pnum=#{pnum},imgurl=#{imgurl},description=#{description} where id = #{id}")
-    public void update(products products);
+    public void update(Products products);
 
     @Delete("delete from products where id=#{id}")
     public void del(String id);

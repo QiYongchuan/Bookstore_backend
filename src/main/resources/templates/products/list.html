@@ -130,7 +130,7 @@
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%" th:text="${p.pnum}">${p.pnum }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center" th:text="${p.category}">${p.category}</td>
 									<td align="center" style="HEIGHT: 22px" width="7%">
-										<a href="edit.html">
+										<a th:href="'edit?id=' + ${p.id}">
 											<img src="../images/i_edit.gif" border="0" style="CURSOR: hand">
 										</a>
 									</td>
